@@ -1,0 +1,15 @@
+{
+    "name": "ablam/bookstore",
+    "authors": [
+        {
+            "name": "Hippolyte EZIAN",
+            "email": "polarusdev@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Bookstore\\":"src/"
+        }
+    }
+}
