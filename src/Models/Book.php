@@ -4,7 +4,7 @@ namespace Bookstore\Models;
 
 use Bookstore\helpers\Connection;
 
-class Book
+class Book extends Model
 {
     private int $id;
     public string $title;
@@ -15,9 +15,11 @@ class Book
     private int $nbreDownload;
     public string $editionDate;
     public string $filePath;
+    
 
-    public function __construct(string $title, string $author, string $editionDate, string $description = "", string $picture = "", string $filePath = "")
+    public function __construct(string $title = "", string $author="", string $editionDate="", string $description = "", string $picture = "", string $filePath = "")
     {
+        $this->table = "book";
         $this->title = $title;
         $this->description = $description;
         $this->author = $author;
@@ -60,8 +62,7 @@ class Book
 
     public static function createTable()
     {
-        $con = new Connection();
-        $pdo = $con->getConnection();
+        $pdo = Connection::getConnection();
         $request = "create table if not exists book (
             id int auto_increment not null primary key,
             title varchar(50) not null,
@@ -83,4 +84,7 @@ class Book
             #echo "error";
         }
     }
+
+
+
 }

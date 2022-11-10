@@ -1,3 +1,13 @@
+<?php 
+    if (!isset($_SESSION["user"])) {
+    header('location:/bookstore/auth');
+    }else{
+        if ($_SESSION["user"]['role']!="Admin") {
+            header('location:/bookstore/home');
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +21,7 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="views/css/style.css">
-    <title><?=$title?></title>
+    <title>Admin|<?=$title?></title>
 </head>
 
 <body>
@@ -127,13 +137,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">SignUp</a>
-                        </li>
 
+                        <?php if (isset($_SESSION["user"])): ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/bookstore/auth/logout">Logout</a>
+                        </li>
+                        <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/bookstore/auth/signuppage">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/bookstore/auth/loginpage">Login</a>
+                        </li>
+                        <?php endif; ?>
                     </ul>
 
                 </div>
@@ -170,7 +187,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link link-dark">
+                            <a href="/bookstore/admin/bookspage" class="nav-link link-dark">
                                 <svg class="bi pe-none me-2" width="16" height="16">
                                     <use xlink:href="#table"></use>
                                 </svg>
@@ -200,7 +217,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="" width="32" height="32"
                                 class="rounded-circle me-2">
-                            <strong>mdo</strong>
+                            <strong><?=$_SESSION['user']['name']?></strong>
                         </a>
                         <ul class="dropdown-menu text-small shadow">
                             <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -209,7 +226,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <li><a class="dropdown-item" href="/bookstore/auth/logout">Sign out</a></li>
                         </ul>
                     </div>
                 </div>

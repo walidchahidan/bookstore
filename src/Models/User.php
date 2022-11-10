@@ -3,6 +3,7 @@
 namespace Bookstore\Models;
 
 use Bookstore\helpers\Connection;
+use PDO;
 
 class User
 {
@@ -52,8 +53,8 @@ class User
 
    public static function createTable()
    {
-       $con = new Connection();
-       $pdo = $con->getConnection();
+       
+       $pdo = Connection::getConnection();
        $request = "create  table if not exists user (
            id int auto_increment not null primary key,
            name varchar(50) not null,
@@ -72,5 +73,40 @@ class User
            #echo "error";
        }
    }
+
+   public function insertUser():bool
+   {
+    
+    $pdo = Connection::getConnection();
+
+        $request = "insert into user (name, email, password, picture, role) values(:name, :email, :password, :picture, :role )";
+        $params = [
+            "name"=>$this->name,
+            "email"=>$this->email,
+            "password"=>$this->password,
+            "picture"=>$this->picture,
+            "role"=>$this->role
+        ];
+        $stmt = $pdo->prepare($request);
+        return $stmt ->execute($params);
+    }
+
+    function getUserByEmail(){
+        $pdo = Connection::getConnection();
+        $request = "select * from user where email = :email";
+        $stmt = $pdo->prepare($request);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, 'User', ['','',''] );
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+        $stmt->execute(["email"=>$this->email]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $data = $stmt->fetch();
+        
+       if ($data == false) {
+        return null;
+       }else{
+        return $data;
+       }
+        
+    }
 
 }

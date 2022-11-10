@@ -21,8 +21,8 @@ class Setting
 
     public static function createTable()
     {
-        $con = new Connection();
-        $pdo = $con->getConnection();
+        
+        $pdo = Connection::getConnection();
         $request = "create table if not exists setting (
             id int auto_increment not null primary key,
             description text,

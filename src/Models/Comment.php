@@ -20,8 +20,8 @@ class Comment
 
    public static function createTable()
    {
-       $con = new Connection();
-       $pdo = $con->getConnection();
+       
+       $pdo = Connection::getConnection();
        $request = "create table if not exists comment (
            id int auto_increment not null primary key,
            message text,
