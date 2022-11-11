@@ -4,7 +4,7 @@ namespace Bookstore\Models;
 
 use Bookstore\helpers\Connection;
 
-class Comment
+class Comment extends Model
 {
    public string $message;
    public string $authorName;

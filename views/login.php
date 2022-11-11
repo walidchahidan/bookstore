@@ -1,12 +1,15 @@
 <?php
     $title = "Login";
-    if (isset($_SESSION["user"])) {
-            header('location:/bookstore/home');
-    }
+    
 ob_start();
 ?>
 <main class="form-signin mt-5 w-50 m-auto">
 
+    <?php if (isset($_SESSION["success"])): ?>
+    <div class="alert alert-success">
+        <?=$_SESSION["success"]?>
+    </div>
+    <?php endif; ?>
     <?php if (isset($_SESSION["error"])): ?>
     <div class="alert alert-danger">
         <?=$_SESSION["error"]?>
@@ -35,6 +38,7 @@ ob_start();
 <?php
 $content = ob_get_clean();
 unset($_SESSION["error"]);
+unset($_SESSION["success"]);
 
 require "views/templates/userLayout.php";
 ?>

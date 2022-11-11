@@ -1,13 +1,3 @@
-<?php 
-    if (!isset($_SESSION["user"])) {
-    header('location:/bookstore/auth');
-    }else{
-        if ($_SESSION["user"]['role']!="Admin") {
-            header('location:/bookstore/home');
-        }
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="views/css/style.css">
     <title>Admin|<?=$title?></title>
 </head>
@@ -141,14 +132,14 @@
                         <?php if (isset($_SESSION["user"])): ?>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/bookstore/auth/logout">Logout</a>
+                            <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/logout">Logout</a>
                         </li>
                         <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/bookstore/auth/signuppage">Sign Up</a>
+                            <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/signuppage">Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/bookstore/auth/loginpage">Login</a>
+                            <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/loginpage">Login</a>
                         </li>
                         <?php endif; ?>
                     </ul>
@@ -187,7 +178,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/bookstore/admin/bookspage" class="nav-link link-dark">
+                            <a href="<?=$GLOBALS['baseUrl']?>/admin/bookspage" class="nav-link link-dark">
                                 <svg class="bi pe-none me-2" width="16" height="16">
                                     <use xlink:href="#table"></use>
                                 </svg>
@@ -226,7 +217,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/bookstore/auth/logout">Sign out</a></li>
+                            <li><a class="dropdown-item" href="<?=$GLOBALS['baseUrl']?>/auth/logout">Sign out</a></li>
                         </ul>
                     </div>
                 </div>

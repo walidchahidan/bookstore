@@ -15,7 +15,7 @@ class User
             $password = htmlspecialchars($_POST['password']);
             $user = new ModelsUser($name, $email,$password );
             if ($user->insertUser()) {
-                header("location:/bookstore/auth");
+                header("location:$baseUrl/auth");
             }else{
                 echo "User Insertion Error";
             }

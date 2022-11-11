@@ -1,6 +1,7 @@
 <?php
 
 // use Bookstore\Controllers\Auth;
+require "src/helpers/config.php";
 session_start();
 use Bookstore\Controllers\Home;
 use Bookstore\Models\Book;
@@ -45,7 +46,13 @@ use Bookstore\Models\User;
             if (isset($params[1])) {
                 try {
                     $methode =$params[1];
-                    $controller->$methode();
+                    if (isset($params[2])) {
+                        $value = $params[2];
+                        $controller->$methode($value);
+                    }else{
+                        $controller->$methode();
+                    }
+
                 } catch (Error $e) {
                         echo $e->getMessage()."<br>";
                     Home::notfoundpage();

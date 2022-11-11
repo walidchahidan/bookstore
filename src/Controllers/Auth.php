@@ -28,10 +28,14 @@ class Auth
 
         public function login()
         {
+            global $baseUrl;
             // echo "test login";
+            if (isset($_SESSION["user"])) {
+                header("location:$baseUrl/home");
+            }
             
             if (isset($_POST['login'])) {
-                // header("location:/bookstore/home");
+                // header("location:$baseUrl/home");
                 $email = htmlspecialchars($_POST['email']);
                 $password = htmlspecialchars($_POST['password']);
                 $user = new User("", $email, $password);
@@ -45,18 +49,18 @@ class Auth
                         
                         $_SESSION["user"]= $newUser;
                        if ($newUser['role']=="Admin") {
-                        header("location:/bookstore/admin");
+                        header("location:$baseUrl/admin");
                        }else{
-                        header("location:/bookstore/home");
+                        header("location:$baseUrl/home");
                        }
                         
                     }else{
                         $_SESSION['error'] = "wrong password";
-                        header("location:/bookstore/auth/loginpage");
+                        header("location:$baseUrl/auth/loginpage");
                     }
                 }else{
                     $_SESSION['error'] = "wrong credentials";
-                    header("location:/bookstore/auth/loginpage");
+                    header("location:$baseUrl/auth/loginpage");
                 }
             
             }
@@ -64,14 +68,14 @@ class Auth
 
 
         function signup() {
-        
+            global $baseUrl;
             if (isset($_POST['signup'])) {
                 $name = htmlspecialchars($_POST['name']);
                 $email = htmlspecialchars($_POST['email']);
                 $password = htmlspecialchars($_POST['password']);
                 $user = new User($name, $email,$password );
                 if ($user->insertUser()) {
-                    header("location:/bookstore/auth");
+                    header("location:$baseUrl/auth");
                 }else{
                     echo "User Insertion Error";
                 }
@@ -80,10 +84,11 @@ class Auth
         }
 
         function logout(){
+            global $baseUrl;
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
                 session_destroy();
-                header('location:/bookstore/auth');
+                header("location:$baseUrl/auth");
             }
         }
 

@@ -4,7 +4,7 @@ namespace Bookstore\Models;
 
 use Bookstore\helpers\Connection;
 
-class Setting
+class Setting extends Model
 {
     public string $name;
     public string $logo;

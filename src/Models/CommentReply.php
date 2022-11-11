@@ -4,7 +4,7 @@ namespace Bookstore\Models;
 
 use Bookstore\helpers\Connection;
 
-class CommentReply
+class CommentReply extends Model
 {
     public string $message;
     public string $datereply;

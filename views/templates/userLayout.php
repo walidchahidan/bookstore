@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/style.css">
     <title><?=$title?></title>
 </head>
@@ -18,7 +19,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-info">
             <div class="container">
-                <a class="navbar-brand" href="/bookstore/home">Book Store</a>
+                <a class="navbar-brand" href="<?=$GLOBALS['baseUrl']?>/home">Book Store</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -34,17 +35,17 @@
                         <?php if (isset($_SESSION["user"])): ?>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/bookstore/auth/loginpage"><?=$_SESSION["user"]['name']?></a>
+                            <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/loginpage"><?=$_SESSION["user"]['name']?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/bookstore/auth/logout">Logout</a>
+                            <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/logout">Logout</a>
                         </li>
                         <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/bookstore/auth/signuppage">Sign Up</a>
+                            <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/signuppage">Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/bookstore/auth/loginpage">Login</a>
+                            <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/loginpage">Login</a>
                         </li>
                         <?php endif; ?>
 

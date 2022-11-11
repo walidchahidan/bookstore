@@ -4,7 +4,7 @@ $title = "Sign Up";
 ob_start();
 ?>
 <main class="form-signin mt-5 w-50 m-auto">
-    <form action="/bookstore/auth/signup" method="POST" enctype="multipart/form-data">
+    <form action="<?=$GLOBALS['baseUrl']?>/auth/signup" method="POST" enctype="multipart/form-data">
         <!-- <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
         <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
