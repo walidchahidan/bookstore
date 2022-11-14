@@ -45,6 +45,9 @@
                             <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/signuppage">Sign Up</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/home/getcard">book</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="<?=$GLOBALS['baseUrl']?>/auth/loginpage">Login</a>
                         </li>
                         <?php endif; ?>
